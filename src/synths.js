@@ -1,5 +1,6 @@
 
 let teoria = require('teoria');
+require('../node_modules/theresas-sound-world/dist/tsw.js');
 let _ = require('underscore');
 
 
