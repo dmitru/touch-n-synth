@@ -1,0 +1,27 @@
+{
+  "name": "theremin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/theremin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p"
+  },
+  "author": "Dmitriy Borodiy, dmitriy.borodiy@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.3.17",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-runtime": "^6.3.19",
+    "core-js": "^1.2.6",
+    "webpack": "^1.12.9"
+  },
+  "dependencies": {
+    "paperjs": "paperjs/paper.js",
+    "jquery": "^2.1.4",
+    "teoria": "saebekassebil/teoria",
+    "theresas-sound-world": "stuartmemo/theresas-sound-world",
+    "underscore": "^1.8.3"
+  }
+}
