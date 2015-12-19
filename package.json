@@ -1,8 +1,7 @@
 {
-  "name": "theremin",
+  "name": "touch-n-synth",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/theremin.js",
+  "description": "A multitouch-friendly sound synthesizer that runs in a browser",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -p"
