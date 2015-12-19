@@ -11,7 +11,7 @@ A multitouch-friendly sound synthesizer that runs in your browser. You can play 
 ## Build
 
 To build the app for production, execute:
-`npm run build`
+```npm install && npm run build```
 
 ## Under the hood
 
