@@ -29,8 +29,7 @@ $(document).ready(function() {
 
     function touchStart(event) {
         let touch = event.data;
-        const synthParams = keyboardView.computeFrequencyAndVolumeFromTouch(touch);
-        soundEngine.addSynth(touch.id, synthParams);
+        soundEngine.addSynth(touch.id, touch.data);
     }
 
     function touchEnd (event) {
@@ -40,8 +39,7 @@ $(document).ready(function() {
 
     function touchMove(event) {
         let touch = event.data;
-        const synthParams = keyboardView.computeFrequencyAndVolumeFromTouch(touch);
-        soundEngine.updateSynth(touch.id, synthParams);
+        soundEngine.updateSynth(touch.id, touch.data);
     }
 
     window.keyboardView = keyboardView;
