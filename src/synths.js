@@ -43,7 +43,7 @@ class Synth {
 
         this._envParams = {
             attack: 0.01,
-            release: 0.3
+            release: 0.05
         };
 
         this._env = tsw.envelope({
