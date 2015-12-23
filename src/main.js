@@ -5,9 +5,8 @@
 import {SoundEngine} from './synths.js'
 import {KeyboardView, NotesVisualizerView} from './ui.js'
 
-let $ = require('jquery');
-let paper = require('paper');
-window.paper = paper;
+import $ from 'jquery'
+import paper from 'paper'
 
 $(document).ready(function() {
     const controllerContainer = $('#controller-container');

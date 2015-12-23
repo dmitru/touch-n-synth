@@ -1,13 +1,12 @@
 
+import $ from 'jquery'
+import _ from 'underscore'
+import teoria from 'teoria'
+import paper from 'paper'
+
 import {EventTarget} from './events.js'
 import {Notes} from './synths.js'
 
-let $ = require('jquery');
-let teoria = require('teoria');
-let _ = require('underscore');
-let paper = require('paper');
-
-window.teoria = teoria;
 
 export class Touch {
     constructor(x, y) {
