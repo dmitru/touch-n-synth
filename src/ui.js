@@ -132,6 +132,7 @@ export class KeyboardView extends EventTarget {
         this.lastNote = teoria.note(lastNote);
         this.notes = Notes.range(firstNote, lastNote);
         this.touchPaths = [];
+        this.keysPaths = [];
 
         this.onResize();
     }
@@ -197,13 +198,24 @@ export class KeyboardView extends EventTarget {
         for (let i = 0; i < this.touchPaths.length; ++i) {
             this.touchPaths[i].remove();
         }
+        for (let i = 0; i < this.keysPaths.length; ++i) {
+            this.keysPaths[i].remove();
+        }
         this.touchPaths = [];
+        this.keysPaths = [];
 
         _.each(this._touchSurface.touches, (touch) => {
             let pointerPath = new paper.Path.Circle(new paper.Point(touch.x, touch.y), 10);
             pointerPath.fillColor = 'red';
             pointerPath.fillColor.alpha = 0.5;
             this.touchPaths.push(pointerPath);
+
+            const x = Math.floor(touch.x / this.noteWidth) * this.noteWidth;
+            const rectangle = new paper.Rectangle(new paper.Point(x, 0), new paper.Point(x + this.noteWidth, this.height));
+            const path = new paper.Path.Rectangle(rectangle);
+            path.fillColor = 'red';
+            path.fillColor.alpha = 0.1 + 0.4 * (touch.y / this.height);
+            this.keysPaths.push(path);
         });
     }
 
@@ -217,7 +229,7 @@ export class KeyboardView extends EventTarget {
             var x = this.noteWidth * i;
             let rectangle = new paper.Rectangle(new paper.Point(x, 0), new paper.Point(x + this.noteWidth, this.height));
             let path = new paper.Path.Rectangle(rectangle);
-            path.fillColor = (Notes.color(note) == 'black')? '#aaa' : 'white';
+            path.fillColor = (Notes.color(note) == 'black')? '#ddd' : 'white';
             path.strokeColor = '#888';
             path.strokeWidth = 1;
         }
