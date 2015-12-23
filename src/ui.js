@@ -308,7 +308,7 @@ export class NotesVisualizerView extends EventTarget {
             _.each(this.touches, (touch) => {
                 const note = teoria.note.fromFrequency(touch.data.frequency);
                 const percents = (note.cents).toFixed(2);
-                content += `${note.note.name().toUpperCase()}${note.note.accidental()} ${percents}  `;
+                content += `${note.note.name().toUpperCase()}${note.note.accidental()}  `;
             });
 
             this.touchPath.content = content;
