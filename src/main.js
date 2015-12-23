@@ -2,20 +2,31 @@
  * Created by dmitru on 12/19/15.
  */
 
+import '../css/style.scss'
+
 import {SoundEngine} from './synths.js'
 import {KeyboardView, NotesVisualizerView} from './ui.js'
 
 import $ from 'jquery'
 import paper from 'paper'
 
+window.$ = $;
+
 $(document).ready(function() {
+    const mainContainer = $('#main-container');
+    mainContainer.height(window.innerHeight - 30);
+
     const controllerContainer = $('#controller-container');
-    controllerContainer.css('width', window.innerWidth);
-    controllerContainer.css('height', window.innerHeight * 0.8);
+    controllerContainer.css('width', mainContainer.width());
+    controllerContainer.css('height', mainContainer.height() * 0.8);
+
+    const bottomContainer = $('#bottom-container');
+    bottomContainer.css('width', mainContainer.width());
+    bottomContainer.css('height', mainContainer.height() * 0.2);
 
     const visualizerContainer = $('#visualizer-container');
-    visualizerContainer.css('width', window.innerWidth);
-    visualizerContainer.css('height', window.innerHeight * 0.2);
+    visualizerContainer.css('width', mainContainer.width());
+    visualizerContainer.css('height', mainContainer.height() * 0.2);
 
     const keyboardView = new KeyboardView(controllerContainer, {
         firstNote: 'C4',
@@ -25,12 +36,12 @@ $(document).ready(function() {
     window.visualizerView = visualizerView;
 
     function onResize() {
-        controllerContainer.css('width', window.innerWidth);
-        controllerContainer.css('height', window.innerHeight * 0.8);
+        mainContainer.height(window.innerHeight - 30);
+        controllerContainer.css('width', mainContainer.width());
+        controllerContainer.css('height', mainContainer.height() * 0.8);
         keyboardView.onResize();
-
-        visualizerContainer.css('width', window.innerWidth);
-        visualizerContainer.css('height', window.innerHeight * 0.2);
+        visualizerContainer.css('width', mainContainer.width());
+        visualizerContainer.css('height', mainContainer.height() * 0.2);
         visualizerView.onResize();
     }
 

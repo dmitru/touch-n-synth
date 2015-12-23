@@ -1,0 +1,33 @@
+@import "compass";
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.panel {
+    background-color: rgba(76,76,76,1);
+    @include filter-gradient(#ffffff, #ededed, vertical);
+    @include background-image(linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%));
+}
+
+#header {
+    height: 30px;
+    width: 100%;
+}
+
+#mainContainer {
+
+}
+
+#controller-container {
+    height: 80%;
+}
+
+#bottom-container {
+    height: 20%;
+}
+
+#visualizer-container {
+    float: left;
+}

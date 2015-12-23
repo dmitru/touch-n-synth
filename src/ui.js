@@ -28,8 +28,13 @@ export class TouchSurface extends EventTarget {
     constructor(element) {
         super();
         this.element = element;
+        this.rect = this.element.getBoundingClientRect();
         this.touches = [];
         this._setUpEventListeners();
+    }
+
+    onResize() {
+        this.rect = this.element.getBoundingClientRect();
     }
 
     onTouchStart(touch) {
@@ -45,7 +50,7 @@ export class TouchSurface extends EventTarget {
     _setUpEventListeners() {
         this.element.addEventListener("mousedown", e => {
             e.preventDefault();
-            this.touches = [new Touch(e.clientX, e.clientY)];
+            this.touches = [new Touch(e.clientX - this.rect.left, e.clientY - this.rect.top)];
             this.onTouchStart(this.touches[0]);
         }, false);
         this.element.addEventListener("mouseup", e => {
@@ -57,13 +62,15 @@ export class TouchSurface extends EventTarget {
         this.element.addEventListener("mousemove", e => {
             e.preventDefault();
             if (this.touches.length == 0) return;
-            this.touches[0].x = e.clientX;
-            this.touches[0].y = e.clientY;
+            this.touches[0].x = e.clientX - this.rect.left;
+            this.touches[0].y = e.clientY - this.rect.top;
             this.onTouchMove(this.touches[0]);
         }, false);
 
         this.element.addEventListener("touchstart", e => {
             e.preventDefault();
+            const rect = this.element.getBoundingClientRect();
+            console.log(this.rect.left, this.rect.top);
             _.each(e.changedTouches, (newTouchEvent) => {
                 let newTouch = new Touch(newTouchEvent.clientX, newTouchEvent.clientY);
                 this.onTouchStart(newTouch);
@@ -73,7 +80,9 @@ export class TouchSurface extends EventTarget {
         this.element.addEventListener("touchmove", e => {
             e.preventDefault();
             _.each(e.changedTouches, (movedTouchEvent) => {
-                let movedTouch = new Touch(movedTouchEvent.clientX, movedTouchEvent.clientY);
+                let movedTouch = new Touch(
+                    movedTouchEvent.clientX - this.rect.left,
+                    movedTouchEvent.clientY - this.rect.top);
                 let closestTouch = TouchSurface.findClosestTouch(movedTouch, this.touches);
                 closestTouch.x = movedTouch.x;
                 closestTouch.y = movedTouch.y;
@@ -83,7 +92,9 @@ export class TouchSurface extends EventTarget {
         this.element.addEventListener("touchend", e => {
             e.preventDefault();
             _.each(e.changedTouches, (endedTouchEvent) => {
-                let endedTouch = new Touch(endedTouchEvent.clientX, endedTouchEvent.clientY);
+                let endedTouch = new Touch(
+                    endedTouchEvent.clientX - this.rect.left,
+                    endedTouchEvent.clientY - this.rect.top);
                 let closestTouch = TouchSurface.findClosestTouch(endedTouch, this.touches);
                 this.touches = _.filter(this.touches, touch => touch.id != closestTouch.id);
                 this.onTouchEnd(closestTouch);
@@ -129,10 +140,18 @@ export class KeyboardView extends EventTarget {
         this.container = $(container);
         this.container.append($('<canvas/>'));
         this.canvas = this.container.find('canvas')[0];
+        this._fitCanvasToContainer();
         this._paper_project = new paper.Project(this.canvas);
         new paper.Layer();
 
         paper.view.onFrame = () => this.draw();
+    }
+
+    _fitCanvasToContainer() {
+        this.canvas.style.width='100%';
+        this.canvas.style.height='100%';
+        this.canvas.width  = this.canvas.offsetWidth;
+        this.canvas.height = this.canvas.offsetHeight;
     }
 
     _setupTouchSurface() {
@@ -179,6 +198,7 @@ export class KeyboardView extends EventTarget {
             this.touchPaths[i].remove();
         }
         this.touchPaths = [];
+
         _.each(this._touchSurface.touches, (touch) => {
             let pointerPath = new paper.Path.Circle(new paper.Point(touch.x, touch.y), 10);
             pointerPath.fillColor = 'red';
@@ -204,10 +224,9 @@ export class KeyboardView extends EventTarget {
     }
 
     onResize() {
-        this.canvas.width = this.width;
-        this.canvas.height = this.height;
         this._paper_project.activate();
-        paper.view.viewSize = new paper.Size(this.width, this.width);
+        this._fitCanvasToContainer();
+        this._touchSurface.onResize();
         this.redraw();
     }
 
@@ -249,12 +268,17 @@ export class NotesVisualizerView extends EventTarget {
     }
 
     onResize() {
-        this.canvas.width = this.width;
-        this.canvas.height = this.height;
         this._paper_project.activate();
-        paper.view.viewSize = new paper.Size(this.width, this.width);
+        this._fitCanvasToContainer();
         this.redraw();
-        paper.view.draw()
+        paper.view.draw();
+    }
+
+    _fitCanvasToContainer() {
+        paper.view.viewSize.width = this.width;
+        paper.view.viewSize.height = this.height;
+        paper.view.size.width = this.width;
+        paper.view.size.height = this.height;
     }
 
     redraw() {
