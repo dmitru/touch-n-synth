@@ -13,8 +13,10 @@ import paper from 'paper'
 window.$ = $;
 
 $(document).ready(function() {
+    const header = $('#header');
+
     const mainContainer = $('#main-container');
-    mainContainer.height(window.innerHeight - 30);
+    mainContainer.height(window.innerHeight - header.height());
 
     const controllerContainer = $('#controller-container');
     controllerContainer.css('width', mainContainer.width());
@@ -29,14 +31,14 @@ $(document).ready(function() {
     visualizerContainer.css('height', mainContainer.height() * 0.2);
 
     const keyboardView = new KeyboardView(controllerContainer, {
-        firstNote: 'C4',
-        lastNote: 'C6'
+        firstNote: 'A3',
+        lastNote: 'E5'
     });
     const visualizerView = new NotesVisualizerView(visualizerContainer);
     window.visualizerView = visualizerView;
 
     function onResize() {
-        mainContainer.height(window.innerHeight - 30);
+        mainContainer.height(window.innerHeight - header.height());
         controllerContainer.css('width', mainContainer.width());
         controllerContainer.css('height', mainContainer.height() * 0.8);
         keyboardView.onResize();

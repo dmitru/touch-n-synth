@@ -6,12 +6,21 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Touch'n'Synth Web Synthesizer</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="build/style.css">
 
     <script src="build/bundle.js"></script>
 </head>
 <body>
-    <div id="header" class="panel"></div>
+    <div id="header" class="panel">
+        <span class="menu-button"><i class="fa fa-cog"></i></span>
+        <span class="dilimiter"></span>
+        <span class="logo">Touch'n'Synth</span>
+        <span class="dilimiter"></span>
+        <span>a multitouch-friendly synth for the Web <a href="https://github.com/dmitru/touch-n-synth">(github)</a></span>
+        <span class="author">Made with <i class="fa fa-heart"></i> by <a href="http://dmitru.github.io">Dmitry Borody</a></span>
+    </div>
     <div id="main-container">
         <div id="controller-container"></div>
         <div id="bottom-container">
