@@ -1,12 +1,12 @@
 # Touch'n'Synth
-A multitouch-friendly sound synthesizer that runs in your browser. You can play with it here (TODO: deploy and add the link).
+A multitouch-friendly sound synthesizer that runs in your browser. You can play with it [here](http://dmitru.github.io/touch-n-synth/). 
 
 > *Warning! The app needs a browser capable of real-time web audio.*
 
-> *At the time of writing, it works best on iPad devices, since they offer both small delay and multitouch interface.*
-> *You can use it in recent versions of Chrome and Safari too, but you won't have the multitouch functionality.*
+> *Among mobile devices, it works best on iPads (at the time of writing), since they offer both small delay and multitouch interface.*
+> *On Android devices beware of the usually higher touch-to-play delay.*
 
-> *On Android devices the high touch-to-play delay makes the app virtually unusable.*
+> *On desktop, it works in any recent Chrome or Safari.*
 
 ## Build
 
