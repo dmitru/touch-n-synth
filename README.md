@@ -1,4 +1,4 @@
-# Touch'n'Synth
+# Multitouch Synthesizer for Web
 A multitouch-friendly sound synthesizer that runs in your browser. You can play with it [here](http://dmitru.github.io/touch-n-synth/). 
 
 > *The app needs a browser capable of real-time web audio.*
