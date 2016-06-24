@@ -1,5 +1,5 @@
 # Multitouch Synthesizer for Web
-A multitouch-friendly sound synthesizer that runs in your browser. You can play with it [here](http://dmitru.github.io/touch-n-synth/). 
+A multitouch-friendly sound synthesizer that runs in your browser. You can play with it [here](http://touch-n-synth.dmitru.me/). 
 
 > *The app needs a browser capable of real-time web audio.*
 
@@ -12,6 +12,8 @@ A multitouch-friendly sound synthesizer that runs in your browser. You can play 
 
 To build the app for production, execute:
 `npm run build`
+
+For build to succeed, your  system must satisfy Paper.js system requirements listed on its [NPM page](https://www.npmjs.com/package/paper).
 
 ## Under the hood
 
