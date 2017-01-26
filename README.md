@@ -1,5 +1,5 @@
 # Multitouch Synthesizer for Web
-A multitouch-friendly sound synthesizer that runs in your browser. You can play with it [here](http://touch-n-synth.dmitru.me/). 
+A multitouch-friendly sound synthesizer that runs in your browser. You can play with it [here](http://dmitru.github.io/touch-n-synth/). 
 
 > *The app needs a browser capable of real-time web audio.*
 
@@ -19,4 +19,4 @@ For build to succeed, your  system must satisfy Paper.js system requirements lis
 
 For generating sound, the project uses [Theresa's Sound World](http://theresassoundworld.com/). This library is a wrapper around HTML5 WebAudio API and implements many of the lower-level building blocks, such as envelope generators. Overall, it makes for a much better WebAudio development experience, at the same time not abstracting away the underlying basic technology.
 
-For visualization, the project uses [Paper.js](http://paperjs.org/), a powerful vector graphics library.
+For visualization, the project uses [Paper.js](http://paperjs.org/), a powerful vector graphics library. Strictly speaking, it's not really necessary for this simple project, but I felt like trying something new for me.
